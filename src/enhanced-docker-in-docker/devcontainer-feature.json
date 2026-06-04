@@ -1,6 +1,6 @@
 {
     "id": "enhanced-docker-in-docker",
-    "version": "1.0",
+    "version": "1.0.0",
     "name": "Enhanced Docker (Docker-in-Docker)",
     "description": "Create child containers *inside* a container, independent from the host's docker instance. Installs Docker extension in the container along with needed CLIs.",
     "options": {
