@@ -2,7 +2,7 @@
     "docker_build_fallback_compose": {
         "image": "ubuntu:focal",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "version": "latest",
                 "dockerDashComposeVersion": "latest"
             }
@@ -11,35 +11,35 @@
     "dockerIp6tablesDisabledTest": {
         "image": "ubuntu:focal",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "version": "27.0.3",
                 "disableIp6tables": true
             }
         }
     },
     "dockerDefaultAddressPool": {
-        "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:0-18",
+        "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
         "remoteUser": "node",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "dockerDefaultAddressPool": "base=192.168.0.0/16,size=24"
             }
         }
     },
     "azureDnsAutoDetectionEnabled": {
-        "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:0-18",
+        "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
         "remoteUser": "node",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "azureDnsAutoDetection": true
             }
         }
     },
     "azureDnsAutoDetectionDisabled": {
-        "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:0-18",
+        "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
         "remoteUser": "node",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "azureDnsAutoDetection": false
             }
         }
@@ -47,7 +47,7 @@
     "docker_build": {
         "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "version": "latest",
                 "moby": "false",
                 "dockerDashComposeVersion": "v2"
@@ -58,7 +58,7 @@
     "docker_build_2": {
         "image": "ubuntu:focal",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "version": "latest",
                 "installDockerBuildx": true,
                 "moby": "false",
@@ -69,7 +69,7 @@
     "docker_build_older": {
         "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "version": "20",
                 "moby": "false",
                 "dockerDashComposeVersion": "v2"
@@ -80,7 +80,7 @@
     "docker_build_no_compose": {
         "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "dockerDashComposeVersion": "none"
             }
         },
@@ -89,7 +89,7 @@
     "docker_buildx": {
         "image": "mcr.microsoft.com/devcontainers/base:bookworm",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "moby": false,
                 "installDockerBuildx": true
             }
@@ -98,7 +98,7 @@
     "docker_python_bookworm": {
         "image": "mcr.microsoft.com/devcontainers/base:bookworm",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "moby": true,
                 "installDockerBuildx": true,
                 "dockerDashComposeVersion": "v2"
@@ -108,7 +108,7 @@
     "docker_compose_v1": {
         "image": "mcr.microsoft.com/devcontainers/base:focal",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "moby": true,
                 "installDockerBuildx": true,
                 "dockerDashComposeVersion": "v1"
@@ -118,7 +118,7 @@
     "docker_compose_v2": {
         "image": "mcr.microsoft.com/devcontainers/base:focal",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "moby": true,
                 "installDockerBuildx": true,
                 "dockerDashComposeVersion": "v2"
@@ -128,7 +128,7 @@
     "docker_build_fallback_buildx": {
         "image": "ubuntu:focal",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "version": "latest",
                 "installDockerBuildx": true
             }
@@ -137,7 +137,7 @@
     "docker_specific_moby_buildx": {
         "image": "ubuntu:focal",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "mobyBuildxVersion": "0.12.0"
             }
         }
@@ -145,7 +145,7 @@
     "pin_docker-ce_version_moby_false": {
         "image": "mcr.microsoft.com/devcontainers/base:debian",
         "features": {
-            "docker-in-docker": {
+            "enhanced-docker-in-docker": {
                 "version": "26.1.4",
                 "moby": "false",
                 "mobyBuildxVersion": "latest",
@@ -158,11 +158,11 @@
             }
         }
     },
-    // DO NOT REMOVE: This scenario is used by the docker-in-docker-stress-test workflow
+    // DO NOT REMOVE: This scenario is used by the enhanced-docker-in-docker scenario test suite
     "docker_with_on_create_command": {
         "image": "mcr.microsoft.com/devcontainers/base:debian",
         "features": {
-            "docker-in-docker": {}
+            "enhanced-docker-in-docker": {}
         },
         "remoteUser": "vscode",
         "onCreateCommand": "docker ps && sleep 5s && docker ps"
