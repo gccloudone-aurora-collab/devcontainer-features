@@ -10,7 +10,7 @@ err() {
 
 HL="\033[1;33m"
 N="\033[0;37m"
-echo -e "\n👉${HL} docker-compose version as installed by docker-in-docker feature${N}"
+echo -e "\n👉${HL} docker-compose version as installed by enhanced-docker-in-docker feature${N}"
 check "docker-compose" bash -c "docker-compose version"
 
 architecture="$(dpkg --print-architecture)"
@@ -163,12 +163,12 @@ sha256sum -c docker-compose.sha256sum --ignore-missing
 mkdir -p ${cli_plugins_dir}
 cp ${docker_compose_path} ${cli_plugins_dir}
 
-echo -e "\n👉${HL} docker-compose version as installed by docker-in-docker test ( installing by github api ) ${N}"
+echo -e "\n👉${HL} docker-compose version as installed by enhanced-docker-in-docker test ( installing by github api ) ${N}"
 install_docker_compose "install_from_github_api_valid"
 
 check "docker-compose" bash -c "docker-compose version"
 
-echo -e "\n👉${HL} docker-compose version as installed by docker-in-docker test ( installing by find_prev_version_from_git_tags ) ${N}"
+echo -e "\n👉${HL} docker-compose version as installed by enhanced-docker-in-docker test ( installing by find_prev_version_from_git_tags ) ${N}"
 install_docker_compose
 
 check "docker-compose" bash -c "docker-compose version"

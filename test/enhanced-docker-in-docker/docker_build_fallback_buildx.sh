@@ -8,7 +8,7 @@ source dev-container-features-test-lib
 # Definition specific tests before test for fallback
 HL="\033[1;33m"
 N="\033[0;37m"
-echo -e "\n👉${HL} docker/buildx version as installed by docker-in-docker feature${N}"
+echo -e "\n👉${HL} docker/buildx version as installed by enhanced-docker-in-docker feature${N}"
 check "docker-buildx" docker buildx version
 check "docker-build" docker build ./
 check "docker-buildx" bash -c "docker buildx version"
@@ -172,14 +172,14 @@ install_docker_buildx() {
     find "${docker_home}" -type d -print0 | xargs -n 1 -0 chmod g+s
 }
 
-echo -e "\n👉${HL} docker-buildx version as installed by docker-in-docker test ( installing by github api ) ${N}"
+echo -e "\n👉${HL} docker-buildx version as installed by enhanced-docker-in-docker test ( installing by github api ) ${N}"
 install_docker_buildx "install_from_github_api_valid"
 
 # Definition specific tests after test for fallback
 check "docker-buildx" docker buildx version
 check "docker-buildx" bash -c "docker buildx version"
 
-echo -e "\n👉${HL} docker-buildx version as installed by docker-in-docker test ( installing by find_prev_version_from_git_tags ) ${N}"
+echo -e "\n👉${HL} docker-buildx version as installed by enhanced-docker-in-docker test ( installing by find_prev_version_from_git_tags ) ${N}"
 install_docker_buildx
 
 # Definition specific tests after test for fallback
