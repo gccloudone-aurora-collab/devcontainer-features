@@ -1,6 +1,6 @@
 {
     "docker_build_fallback_compose": {
-        "image": "ubuntu:focal",
+        "image": "ubuntu:noble",
         "features": {
             "enhanced-docker-in-docker": {
                 "version": "latest",
@@ -9,7 +9,7 @@
         }
     },
     "dockerIp6tablesDisabledTest": {
-        "image": "ubuntu:focal",
+        "image": "ubuntu:noble",
         "features": {
             "enhanced-docker-in-docker": {
                 "version": "27.0.3",
@@ -55,8 +55,20 @@
         },
         "remoteUser": "node"
     },
+    "docker_build_with_compose_switch": {
+        "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
+        "features": {
+            "enhanced-docker-in-docker": {
+                "version": "latest",
+                "moby": "false",
+                "dockerDashComposeVersion": "v2",
+                "installDockerComposeSwitch": true
+            }
+        },
+        "remoteUser": "node"
+    },
     "docker_build_2": {
-        "image": "ubuntu:focal",
+        "image": "ubuntu:noble",
         "features": {
             "enhanced-docker-in-docker": {
                 "version": "latest",
@@ -96,7 +108,7 @@
         }
     },
     "docker_python_bookworm": {
-        "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+        "image": "mcr.microsoft.com/devcontainers/base:2.1.8-bookworm",
         "features": {
             "enhanced-docker-in-docker": {
                 "moby": true,
@@ -106,7 +118,7 @@
         }
     },
     "docker_compose_v1": {
-        "image": "mcr.microsoft.com/devcontainers/base:focal",
+        "image": "mcr.microsoft.com/devcontainers/base:noble",
         "features": {
             "enhanced-docker-in-docker": {
                 "moby": true,
@@ -116,7 +128,7 @@
         }
     },
     "docker_compose_v2": {
-        "image": "mcr.microsoft.com/devcontainers/base:focal",
+        "image": "mcr.microsoft.com/devcontainers/base:noble",
         "features": {
             "enhanced-docker-in-docker": {
                 "moby": true,
@@ -126,7 +138,7 @@
         }
     },
     "docker_build_fallback_buildx": {
-        "image": "ubuntu:focal",
+        "image": "ubuntu:noble",
         "features": {
             "enhanced-docker-in-docker": {
                 "version": "latest",
@@ -135,18 +147,18 @@
         }
     },
     "docker_specific_moby_buildx": {
-        "image": "ubuntu:focal",
+        "image": "ubuntu:noble",
         "features": {
             "enhanced-docker-in-docker": {
-                "mobyBuildxVersion": "0.12.0"
+                "mobyBuildxVersion": "0.14.0"
             }
         }
     },
     "pin_docker-ce_version_moby_false": {
-        "image": "mcr.microsoft.com/devcontainers/base:debian",
+        "image": "mcr.microsoft.com/devcontainers/base:bookworm",
         "features": {
             "enhanced-docker-in-docker": {
-                "version": "26.1.4",
+                "version": "28.4.0",
                 "moby": "false",
                 "mobyBuildxVersion": "latest",
                 "dockerDashComposeVersion": "none",
@@ -160,9 +172,12 @@
     },
     // DO NOT REMOVE: This scenario is used by the enhanced-docker-in-docker scenario test suite
     "docker_with_on_create_command": {
-        "image": "mcr.microsoft.com/devcontainers/base:debian",
+        "image": "mcr.microsoft.com/devcontainers/base:bookworm",
         "features": {
-            "enhanced-docker-in-docker": {}
+            "enhanced-docker-in-docker": {
+                "version": "latest",
+                "moby": "false"
+            }
         },
         "remoteUser": "vscode",
         "onCreateCommand": "docker ps && sleep 5s && docker ps"
