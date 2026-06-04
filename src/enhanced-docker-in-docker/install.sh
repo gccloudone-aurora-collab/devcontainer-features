@@ -590,12 +590,10 @@ INNEREOF
 )"
 
 sudo_if() {
-    COMMAND="$*"
-
     if [ "$(id -u)" -ne 0 ]; then
-        sudo $COMMAND
+        sudo "$@"
     else
-        $COMMAND
+        "$@"
     fi
 }
 
@@ -635,9 +633,10 @@ done
 
 if [ "${CA_CERTS_MOUNT}" = "true" ]; then
     echo "(*) Configuring Buildx to trust host CA certificates..."
-    
+
     # We create a new builder named 'proxy-builder'
-    # We use docker-container driver and mount the system's SSL/CA paths into the buildkit container
+    # We use docker-container driver and sync the system's SSL/CA paths into the buildkit container.
+    # The current docker-container driver supports env.* options, but not bind-mount driver options.
     sudo_if docker buildx create \
         --name proxy-builder \
         --driver docker-container \
@@ -645,12 +644,21 @@ if [ "${CA_CERTS_MOUNT}" = "true" ]; then
         --buildkitd-flags '--allow-insecure-entitlement security.insecure' \
         --driver-opt "env.http_proxy=$http_proxy" \
         --driver-opt "env.https_proxy=$https_proxy" \
-        --driver-opt "env.no_proxy=$no_proxy" \
-        --driver-opt "volume=/etc/ssl/certs:/etc/ssl/certs:ro" \
-        --driver-opt "volume=/usr/local/share/ca-certificates:/usr/local/share/ca-certificates:ro" \
-        --driver-opt "volume=/etc/pki/tls/certs:/etc/pki/tls/certs:ro"
+        --driver-opt "env.no_proxy=$no_proxy"
 
-    # Bootstrap it immediately so the container spins up and maps the certs
+    # Bootstrap it immediately so the BuildKit container exists.
+    sudo_if docker buildx inspect proxy-builder --bootstrap
+
+    buildkit_container="buildx_buildkit_proxy-builder0"
+    for cert_dir in /etc/ssl/certs /usr/local/share/ca-certificates /etc/pki/tls/certs; do
+        if [ -d "${cert_dir}" ]; then
+            sudo_if docker exec "${buildkit_container}" mkdir -p "${cert_dir}"
+            sudo_if docker cp "${cert_dir}/." "${buildkit_container}:${cert_dir}/"
+        fi
+    done
+
+    # Restart BuildKit so future builds load the synced certificate store.
+    sudo_if docker restart "${buildkit_container}"
     sudo_if docker buildx inspect proxy-builder --bootstrap
 fi
 

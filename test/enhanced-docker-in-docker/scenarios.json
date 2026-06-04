@@ -154,6 +154,17 @@
             }
         }
     },
+    "caCertsMount": {
+        "image": "ubuntu:noble",
+        "features": {
+            "enhanced-docker-in-docker": {
+                "version": "latest",
+                "moby": true,
+                "installDockerBuildx": true,
+                "caCertsMount": true
+            }
+        }
+    },
     "pin_docker-ce_version_moby_false": {
         "image": "mcr.microsoft.com/devcontainers/base:bookworm",
         "features": {
