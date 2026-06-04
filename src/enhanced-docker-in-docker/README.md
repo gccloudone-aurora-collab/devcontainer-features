@@ -33,7 +33,7 @@ Standard Docker-in-Docker deployments often fail when running behind a corporate
 
 By setting `"caCertsMount": true`, this feature automatically:
 1. Creates a persistent Buildx builder named `proxy-builder`.
-2. Mounts the Dev Container's SSL certificate directories (`/etc/ssl/certs`, `/usr/local/share/ca-certificates`, etc.) directly into the nested BuildKit container.
+2. Syncs the Dev Container's SSL certificate directories (`/etc/ssl/certs`, `/usr/local/share/ca-certificates`, etc.) into the nested BuildKit container.
 3. Automatically passes the parent container's `http_proxy`, `https_proxy`, and `no_proxy` environment variables into the builder.
 
 **Note:** For this to work, your base Dev Container must *already* trust your corporate proxy. (e.g., via Podman global `mounts.conf` injection, or by copying your `.crt` file into the base image via a `Dockerfile` and running `update-ca-certificates`).
