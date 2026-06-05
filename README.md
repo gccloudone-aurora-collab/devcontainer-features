@@ -1,6 +1,6 @@
-# Devcontainer Features for Databricks 
+# Dev Container Features
 
-[![Tests](https://github.com/KingBain/devcontainer-features-databricks/actions/workflows/test.yaml/badge.svg)](https://github.com/KingBain/devcontainer-features-databricks/actions/workflows/test.yaml)
+[![Tests](https://github.com/KingBain/devcontainer-features/actions/workflows/test.yaml/badge.svg)](https://github.com/KingBain/devcontainer-features/actions/workflows/test.yaml)
 
 This repository contains my custom Dev Container Features.
 
@@ -8,9 +8,13 @@ You can learn more about Features at [https://containers.dev/implementors/featur
 
 ## Features
 
-| Feature                                | Description                                                                        |
-| -------------------------------------- | ---------------------------------------------------------------------------------- |
-| [databricks-cli](./src/databricks-cli) | Installs the Databricks CLI in your dev container using the official setup script. |
+<!-- FEATURES_TABLE_START -->
+| Feature | Description |
+| ------- | ----------- |
+| [cert-update](./src/cert-update) | Applies mounted corporate CA certificates to the container trust store |
+| [databricks-cli](./src/databricks-cli) | Installs the Databricks CLI using the official Databricks setup script. |
+| [enhanced-docker-in-docker](./src/enhanced-docker-in-docker) | Create child containers *inside* a container, independent from the host's docker instance. Installs Docker extension in the container along with needed CLIs. |
+<!-- FEATURES_TABLE_END -->
 
 ## Usage
 
@@ -23,7 +27,7 @@ Example using the `databricks-cli` feature:
   "name": "my-project-devcontainer",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/KingBain/devcontainer-features-databricks/databricks-cli:0.0.1": {}
+    "ghcr.io/KingBain/devcontainer-features/databricks-cli:0.0.1": {}
   }
 }
 ```
