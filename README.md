@@ -18,16 +18,18 @@ You can learn more about Features at [https://containers.dev/implementors/featur
 
 ## Usage
 
-To reference a Feature from this repository, add it to your `devcontainer.json`. Each Feature has a `README.md` under its folder with details and options (if any).
+To reference one or more Features from this repository, add them to your `devcontainer.json`. Each Feature has a `README.md` under its folder with details and options.
 
-Example using the `databricks-cli` feature:
-
+<!-- USAGE_EXAMPLE_START -->
 ```jsonc
 {
   "name": "my-project-devcontainer",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/KingBain/devcontainer-features/databricks-cli:0.0.1": {}
+    "ghcr.io/KingBain/devcontainer-features/cert-update:1": {},
+    "ghcr.io/KingBain/devcontainer-features/databricks-cli:0": {},
+    "ghcr.io/KingBain/devcontainer-features/enhanced-docker-in-docker:1": {}
   }
 }
 ```
+<!-- USAGE_EXAMPLE_END -->

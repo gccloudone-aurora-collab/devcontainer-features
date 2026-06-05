@@ -24,10 +24,18 @@ jobs:
         with:
           publish-features: "true"
           base-path-to-features: "./src"
-          generate-docs: "true"
+          generate-docs: "false"
           
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Generate feature documentation"
+        run: |
+          devcontainer features generate-docs \
+            --project-folder ./src \
+            --namespace "${{ github.repository }}" \
+            --github-owner "${{ github.repository_owner }}" \
+            --github-repo "${{ github.event.repository.name }}"
 
       - name: "Update root README"
         run: ./scripts/update-root-readme.sh
@@ -47,7 +55,7 @@ jobs:
           git checkout -b $branch
           message='Automated documentation update'
           # Add / update and commit
-          git add README.md */**/README.md
+          git add README.md src/*/README.md
           git commit -m 'Automated documentation update [skip ci]' || export NO_UPDATES=true
           # Push
           if [ "$NO_UPDATES" != "true" ] ; then
