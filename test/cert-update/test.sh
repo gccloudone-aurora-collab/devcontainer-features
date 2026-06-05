@@ -1,6 +1,6 @@
 #!/bin/bash
 # Test:
-# devcontainer features test --features cert-roller --remote-user root --skip-scenarios --base-image mcr.microsoft.com/devcontainers/base:ubuntu
+# devcontainer features test --features cert-update --remote-user root --skip-scenarios --base-image mcr.microsoft.com/devcontainers/base:ubuntu
 
 set -e
 
