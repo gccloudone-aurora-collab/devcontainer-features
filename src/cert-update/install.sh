@@ -5,13 +5,13 @@ CERT_DIR="${CERTDIRECTORY:-/usr/local/share/ca-certificates}"
 REQUIRED="${REQUIRED:-true}"
 TEST_CERTIFICATE="${TESTCERTIFICATE:-false}"
 
-echo "🔐 Activating Cert Roller"
+echo "Activating cert-update"
 echo "Certificate directory: ${CERT_DIR}"
 
 mkdir -p "${CERT_DIR}"
 
 if [ "${TEST_CERTIFICATE}" = "true" ]; then
-  echo "Generating Cert Roller test CA"
+  echo "Generating cert-update test CA"
 
   if ! command -v openssl >/dev/null 2>&1; then
     echo "openssl is required when testCertificate=true"
@@ -24,9 +24,9 @@ if [ "${TEST_CERTIFICATE}" = "true" ]; then
     -sha256 \
     -days 365 \
     -nodes \
-    -subj "/CN=Cert Roller Test CA/O=Cert Roller" \
-    -keyout /tmp/cert-roller-test-ca.key \
-    -out "${CERT_DIR}/cert-roller-test-ca.crt"
+    -subj "/CN=cert-update Test CA/O=cert-update" \
+    -keyout /tmp/cert-update-test-ca.key \
+    -out "${CERT_DIR}/cert-update-test-ca.crt"
 fi
 
 CERT_COUNT="$(find "${CERT_DIR}" -maxdepth 1 -type f -name '*.crt' | wc -l | tr -d ' ')"
@@ -52,4 +52,4 @@ else
   exit 1
 fi
 
-echo "✅ Cert Roller complete"
+echo "cert-update complete"
