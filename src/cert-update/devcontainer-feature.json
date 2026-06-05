@@ -1,0 +1,23 @@
+{
+  "id": "cert-update",
+  "name": "Certificate Updater",
+  "version": "1.0.0",
+  "description": "Applies mounted corporate CA certificates to the container trust store",
+    "options": {
+    "certDirectory": {
+      "type": "string",
+      "default": "/usr/local/share/ca-certificates",
+      "description": "Directory containing custom CA certificates"
+    },
+    "required": {
+      "type": "boolean",
+      "default": true,
+      "description": "Fail if no custom CA certificates are found"
+    },
+    "testCertificate": {
+      "type": "boolean",
+      "default": false,
+      "description": "Generate a temporary test CA certificate for feature testing"
+    }
+  }
+}

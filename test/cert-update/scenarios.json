@@ -1,0 +1,26 @@
+{
+  "default": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "cert-update": {
+        "testCertificate": true
+      }
+    }
+  },
+  "missing-allowed": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "cert-update": {
+        "required": false
+      }
+    }
+  },
+  "debian": {
+    "image": "mcr.microsoft.com/devcontainers/base:debian",
+    "features": {
+      "cert-update": {
+        "testCertificate": true
+      }
+    }
+  }
+}
