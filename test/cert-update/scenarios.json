@@ -15,6 +15,23 @@
       }
     }
   },
+  "source-missing": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "cert-update": {
+        "sourceCertificateDirectory": "/tmp/missing-certvol"
+      }
+    }
+  },
+  "source-copy": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "cert-update": {
+        "sourceCertificateDirectory": "/tmp/cert-update-source",
+        "testCertificate": true
+      }
+    }
+  },
   "debian": {
     "image": "mcr.microsoft.com/devcontainers/base:debian",
     "features": {

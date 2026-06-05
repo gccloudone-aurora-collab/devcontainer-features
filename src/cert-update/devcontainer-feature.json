@@ -3,7 +3,12 @@
   "name": "Certificate Updater",
   "version": "1.0.0",
   "description": "Applies mounted corporate CA certificates to the container trust store",
-    "options": {
+  "options": {
+    "sourceCertificateDirectory": {
+      "type": "string",
+      "default": "",
+      "description": "Optional directory containing mounted custom CA certificates to copy into certDirectory before updating trust"
+    },
     "certDirectory": {
       "type": "string",
       "default": "/usr/local/share/ca-certificates",
