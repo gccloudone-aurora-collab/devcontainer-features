@@ -3,7 +3,5 @@
   "id": "databricks-cli",
   "version": "0.0.1",
   "description": "Installs the Databricks CLI using the official Databricks setup script.",
-  "installsAfter": [
-    "ghcr.io/devcontainers/features/common-utils"
-  ]
+  "installsAfter": ["ghcr.io/devcontainers/features/common-utils"]
 }
