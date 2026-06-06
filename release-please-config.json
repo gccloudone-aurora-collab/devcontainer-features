@@ -8,7 +8,7 @@
       "extra-files": [
         {
           "type": "json",
-          "path": "src/cert-update/devcontainer-feature.json",
+          "path": "devcontainer-feature.json",
           "jsonpath": "$.version"
         }
       ]
@@ -20,7 +20,7 @@
       "extra-files": [
         {
           "type": "json",
-          "path": "src/databricks-cli/devcontainer-feature.json",
+          "path": "devcontainer-feature.json",
           "jsonpath": "$.version"
         }
       ]
@@ -32,7 +32,7 @@
       "extra-files": [
         {
           "type": "json",
-          "path": "src/enhanced-docker-in-docker/devcontainer-feature.json",
+          "path": "devcontainer-feature.json",
           "jsonpath": "$.version"
         }
       ]

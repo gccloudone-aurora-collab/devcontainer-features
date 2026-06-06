@@ -27,11 +27,27 @@ jobs:
         if: ${{ steps.release-please.outputs.releases_created == 'true' }}
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
-          persist-credentials: false
+          persist-credentials: true
 
       - name: "Install latest devcontainer CLI"
         if: ${{ steps.release-please.outputs.releases_created == 'true' }}
         run: npm install -g @devcontainers/cli
+
+      - name: "Verify feature versions"
+        if: ${{ steps.release-please.outputs.releases_created == 'true' }}
+        run: |
+          set -euo pipefail
+
+          for metadata in src/*/devcontainer-feature.json; do
+            package_path="${metadata%/devcontainer-feature.json}"
+            expected_version="$(jq -r --arg package_path "${package_path}" '.[$package_path]' .release-please-manifest.json)"
+            actual_version="$(jq -r '.version' "${metadata}")"
+
+            if [ "${expected_version}" != "${actual_version}" ]; then
+              echo "::error title=Version mismatch::${metadata} has version ${actual_version}, expected ${expected_version} from .release-please-manifest.json"
+              exit 1
+            fi
+          done
 
       - name: "Publish Features"
         if: ${{ steps.release-please.outputs.releases_created == 'true' }}
