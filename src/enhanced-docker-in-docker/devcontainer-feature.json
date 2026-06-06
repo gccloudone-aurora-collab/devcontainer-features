@@ -6,7 +6,11 @@
   "options": {
     "version": {
       "type": "string",
-      "proposals": ["latest", "none", "20.10"],
+      "proposals": [
+        "latest",
+        "none",
+        "20.10"
+      ],
       "default": "latest",
       "description": "Select or enter a Docker/Moby Engine version. (Availability can vary by OS version.)"
     },
@@ -22,7 +26,12 @@
     },
     "dockerDashComposeVersion": {
       "type": "string",
-      "enum": ["none", "latest", "v1", "v2"],
+      "enum": [
+        "none",
+        "latest",
+        "v1",
+        "v2"
+      ],
       "default": "latest",
       "description": "Default version of Docker Compose (latest, v1, v2 or none)"
     },
@@ -65,7 +74,9 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": ["ms-azuretools.vscode-docker"]
+      "extensions": [
+        "ms-azuretools.vscode-docker"
+      ]
     }
   },
   "mounts": [
@@ -75,5 +86,7 @@
       "type": "volume"
     }
   ],
-  "installsAfter": ["ghcr.io/devcontainers/features/common-utils"]
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
 }
