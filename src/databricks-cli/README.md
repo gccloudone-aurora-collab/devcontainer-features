@@ -7,7 +7,7 @@ Installs the Databricks CLI using the official Databricks setup script.
 
 ```json
 "features": {
-    "ghcr.io/KingBain/devcontainer-features/databricks-cli:0": {}
+    "ghcr.io/KingBain/devcontainer-features/databricks-cli:1": {}
 }
 ```
 

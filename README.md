@@ -27,7 +27,7 @@ To reference one or more Features from this repository, add them to your `devcon
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
     "ghcr.io/KingBain/devcontainer-features/cert-update:1": {},
-    "ghcr.io/KingBain/devcontainer-features/databricks-cli:0": {},
+    "ghcr.io/KingBain/devcontainer-features/databricks-cli:1": {},
     "ghcr.io/KingBain/devcontainer-features/enhanced-docker-in-docker:1": {}
   }
 }
