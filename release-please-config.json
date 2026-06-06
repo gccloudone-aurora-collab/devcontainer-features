@@ -1,0 +1,41 @@
+{
+  "separate-pull-requests": true,
+  "packages": {
+    "src/cert-update": {
+      "release-type": "simple",
+      "component": "cert-update",
+      "include-component-in-tag": true,
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "src/cert-update/devcontainer-feature.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    },
+    "src/databricks-cli": {
+      "release-type": "simple",
+      "component": "databricks-cli",
+      "include-component-in-tag": true,
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "src/databricks-cli/devcontainer-feature.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    },
+    "src/enhanced-docker-in-docker": {
+      "release-type": "simple",
+      "component": "enhanced-docker-in-docker",
+      "include-component-in-tag": true,
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "src/enhanced-docker-in-docker/devcontainer-feature.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    }
+  }
+}

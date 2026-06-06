@@ -1,0 +1,35 @@
+---
+name: "Validate PR Title"
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+
+permissions: {}
+
+jobs:
+  validate-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Validate conventional commit title"
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          TITLE_REGEX: '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z0-9._/-]+\))?!?: .+$'
+        run: |
+          set -euo pipefail
+
+          if [[ "${PR_TITLE}" =~ ${TITLE_REGEX} ]]; then
+            echo "PR title is valid: ${PR_TITLE}"
+            exit 0
+          fi
+
+          echo "::error title=Invalid PR title::PR title must follow Conventional Commits, for example 'feat(cert-update): add custom CA support' or 'fix: handle missing config'."
+          echo "Received: ${PR_TITLE}"
+          echo "Expected regex: ${TITLE_REGEX}"
+          exit 1

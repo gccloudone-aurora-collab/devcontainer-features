@@ -1,0 +1,84 @@
+---
+name: "Release"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Create or update release PRs"
+        id: release-please
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      - name: "Checkout code"
+        if: ${{ steps.release-please.outputs.releases_created == 'true' }}
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+
+      - name: "Install latest devcontainer CLI"
+        if: ${{ steps.release-please.outputs.releases_created == 'true' }}
+        run: npm install -g @devcontainers/cli
+
+      - name: "Publish Features"
+        if: ${{ steps.release-please.outputs.releases_created == 'true' }}
+        uses: devcontainers/action@1082abd5d2bf3a11abccba70eef98df068277772 # v1
+        with:
+          publish-features: "true"
+          base-path-to-features: "./src"
+          generate-docs: "false"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Generate feature documentation"
+        if: ${{ steps.release-please.outputs.releases_created == 'true' }}
+        run: |
+          devcontainer features generate-docs \
+            --project-folder ./src \
+            --namespace "${{ github.repository }}" \
+            --github-owner "${{ github.repository_owner }}" \
+            --github-repo "${GITHUB_EVENT_REPOSITORY_NAME}"
+        env:
+          GITHUB_EVENT_REPOSITORY_NAME: ${{ github.event.repository.name }}
+
+      - name: "Update root README"
+        if: ${{ steps.release-please.outputs.releases_created == 'true' }}
+        run: ./scripts/update-root-readme.sh
+
+      - name: "Create PR for documentation"
+        if: ${{ steps.release-please.outputs.releases_created == 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+        run: |
+          set -euo pipefail
+
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config pull.rebase false
+
+          branch=automated-documentation-update-${GITHUB_RUN_ID}
+          message='Automated documentation update'
+
+          git checkout -b "${branch}"
+          git add README.md src/*/README.md
+          git commit -m 'Automated documentation update [skip ci]' || {
+            echo "No documentation updates found."
+            exit 0
+          }
+
+          git push origin "${branch}"
+          gh pr create --title "${message}" --body "${message}"
