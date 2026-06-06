@@ -1,6 +1,6 @@
 # Dev Container Features
 
-[![Tests](https://github.com/KingBain/devcontainer-features/actions/workflows/test.yaml/badge.svg)](https://github.com/KingBain/devcontainer-features/actions/workflows/test.yaml)
+[![Release](https://github.com/KingBain/devcontainer-features/actions/workflows/release-please.yaml/badge.svg)](https://github.com/KingBain/devcontainer-features/actions/workflows/release-please.yaml) [![CodeQL](https://github.com/KingBain/devcontainer-features/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/KingBain/devcontainer-features/actions/workflows/github-code-scanning/codeql)
 
 This repository contains my custom Dev Container Features.
 
