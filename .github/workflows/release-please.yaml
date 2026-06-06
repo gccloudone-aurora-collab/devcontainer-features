@@ -86,11 +86,11 @@ jobs:
           git config pull.rebase false
 
           branch=automated-documentation-update-${GITHUB_RUN_ID}
-          message='Automated documentation update'
+          message='chore: Automated documentation update'
 
           git checkout -b "${branch}"
           git add README.md src/*/README.md
-          git commit -m 'Automated documentation update [skip ci]' || {
+          git commit -m 'chore: Automated documentation update [skip ci]' || {
             echo "No documentation updates found."
             exit 0
           }
