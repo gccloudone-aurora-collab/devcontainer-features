@@ -51,7 +51,7 @@ jobs:
 
       - name: "Publish Features"
         if: ${{ steps.release-please.outputs.releases_created == 'true' }}
-        uses: devcontainers/action@1082abd5d2bf3a11abccba70eef98df068277772 # v1
+        uses: devcontainers/action@1082abd5d2bf3a11abccba70eef98df068277772 # v1.4.3
         with:
           publish-features: "true"
           base-path-to-features: "./src"
