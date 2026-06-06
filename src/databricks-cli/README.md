@@ -1,3 +1,4 @@
+
 # Databricks CLI (databricks-cli)
 
 Installs the Databricks CLI using the official Databricks setup script.
@@ -10,6 +11,10 @@ Installs the Databricks CLI using the official Databricks setup script.
 }
 ```
 
+
+
+
+
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/KingBain/devcontainer-features/blob/main/src/databricks-cli/devcontainer-feature.json). Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/KingBain/devcontainer-features/blob/main/src/databricks-cli/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
