@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3](https://github.com/KingBain/devcontainer-features/compare/databricks-cli-v0.0.2...databricks-cli-v0.0.3) (2026-06-06)
+
+
+### Bug Fixes
+
+* updated pipelines ([e3e5118](https://github.com/KingBain/devcontainer-features/commit/e3e5118762c6ec076c5e3a332f93f794047cacc4))
+
 ## [0.0.2](https://github.com/KingBain/devcontainer-features/compare/databricks-cli-v0.0.1...databricks-cli-v0.0.2) (2026-06-06)
 
 
