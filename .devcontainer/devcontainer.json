@@ -18,7 +18,8 @@
         }
     },
     "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+        "ghcr.io/devcontainers/features/docker-in-docker:3": {},
+        "ghcr.io/devcontainers-community/npm-features/prettier:1": {}
     },
     "remoteUser": "node",
     "updateContentCommand": "npm install -g @devcontainers/cli"

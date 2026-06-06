@@ -1,8 +1,10 @@
-name: "PR - Test Updated Features"
+---
+name: "Validate Features"
 
 on:
   pull_request:
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   detect-changes:
