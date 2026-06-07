@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/KingBain/devcontainer-features/compare/cert-update-v1.1.0...cert-update-v1.1.1) (2026-06-07)
+
+
+### Bug Fixes
+
+* fixing cert-update tests ([#34](https://github.com/KingBain/devcontainer-features/issues/34)) ([2957aa3](https://github.com/KingBain/devcontainer-features/commit/2957aa3e284069fee0581b4ff6a0a935b7c0f6ca))
+* Make cert-update tests detect OS trust-store layout and use appropriate CA bundle paths ([#30](https://github.com/KingBain/devcontainer-features/issues/30)) ([1f0d19d](https://github.com/KingBain/devcontainer-features/commit/1f0d19d2c39cd843d5f25bd2599d61098e2cb521))
+
 ## [1.1.0](https://github.com/KingBain/devcontainer-features/compare/cert-update-v1.0.1...cert-update-v1.1.0) (2026-06-07)
 
 
