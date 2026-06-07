@@ -1,6 +1,28 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+install_dependencies() {
+  echo "Certificate update commands not found. Installing ca-certificates package..."
+  if command -v apt-get > /dev/null 2>&1; then
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update -y
+    apt-get install -y --no-install-recommends ca-certificates
+  elif command -v dnf > /dev/null 2>&1; then
+    dnf install -y ca-certificates
+  elif command -v yum > /dev/null 2>&1; then
+    yum install -y ca-certificates
+  elif command -v apk > /dev/null 2>&1; then
+    apk add --no-cache ca-certificates
+  else
+    echo "Warning: Package manager not found. Cannot install ca-certificates."
+  fi
+}
+
+# Ensure required CA certificate tools exist before proceeding
+if ! command -v update-ca-certificates > /dev/null 2>&1 && ! command -v update-ca-trust > /dev/null 2>&1; then
+  install_dependencies
+fi
+
 detect_cert_directory() {
   if [ -n "${CERTDIRECTORY:-}" ]; then
     printf '%s\n' "${CERTDIRECTORY}"

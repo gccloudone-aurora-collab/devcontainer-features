@@ -16,7 +16,7 @@
     },
     "required": {
       "type": "boolean",
-      "default": true,
+      "default": false,
       "description": "Fail if no custom CA certificates are found"
     },
     "testCertificate": {
