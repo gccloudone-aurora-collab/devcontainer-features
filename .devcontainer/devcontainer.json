@@ -13,7 +13,11 @@
       "extensions": ["mads-hartmann.bash-ide-vscode"]
     }
   },
+  "overrideFeatureInstallOrder": ["ghcr.io/KingBain/devcontainer-features/cert-update"],
   "features": {
+    "ghcr.io/KingBain/devcontainer-features/cert-update:1": {
+      "required": false
+    },
     "ghcr.io/devcontainers/features/docker-in-docker:3": {},
     "ghcr.io/devcontainers-community/npm-features/prettier:1": {},
     "ghcr.io/devcontainers/features/python:1": {}
