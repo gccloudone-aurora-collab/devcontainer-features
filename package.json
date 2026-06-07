@@ -1,0 +1,14 @@
+{
+  "name": "devcontainer-features",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Tooling dependencies for building, testing, and publishing devcontainer features.",
+  "license": "MIT",
+  "scripts": {
+    "devcontainer:test": "devcontainer features test --project-folder .",
+    "devcontainer:docs": "devcontainer features generate-docs --project-folder ./src"
+  },
+  "devDependencies": {
+    "@devcontainers/cli": "0.87.0"
+  }
+}
