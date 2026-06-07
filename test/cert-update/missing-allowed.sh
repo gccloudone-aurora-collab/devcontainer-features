@@ -2,15 +2,75 @@
 
 set -e
 
+# shellcheck disable=SC1091
 source dev-container-features-test-lib
 
-check "Corporate cert is not present" \
-  bash -c "! test -f /usr/local/share/ca-certificates/corporate.crt"
+os_release_value() {
+  awk -F= -v key="$1" '$1 == key { value = $2; sub(/^"/, "", value); sub(/"$/, "", value); print value; exit }' /etc/os-release
+}
 
-check "System CA bundle still exists" \
-  test -f /etc/ssl/certs/ca-certificates.crt
+os_summary() {
+  if [ -r /etc/os-release ]; then
+    local pretty_name
+    local os_id
+    local version_id
 
-check "System CA bundle is readable" \
-  test -r /etc/ssl/certs/ca-certificates.crt
+    pretty_name="$(os_release_value PRETTY_NAME)"
+    os_id="$(os_release_value ID)"
+    version_id="$(os_release_value VERSION_ID)"
+
+    printf '%s (%s %s)' "${pretty_name:-unknown}" "${os_id:-unknown}" "${version_id:-unknown}"
+  else
+    uname -a
+  fi
+}
+
+first_existing_bundle() {
+  for bundle in "$@"; do
+    if [ -e "${bundle}" ]; then
+      printf '%s\n' "${bundle}"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+detect_trust_store_layout() {
+  local debian_cert_dir="/usr/local/share/ca-certificates"
+  local debian_bundle="/etc/ssl/certs/ca-certificates.crt"
+  local pki_cert_dir="/etc/pki/ca-trust/source/anchors"
+  local pki_default_bundle="/etc/pki/tls/certs/ca-bundle.crt"
+
+  if command -v update-ca-certificates > /dev/null 2>&1 || [ -d "${debian_cert_dir}" ]; then
+    CERT_DIR="${debian_cert_dir}"
+    CA_BUNDLE="${debian_bundle}"
+    return 0
+  fi
+
+  if command -v update-ca-trust > /dev/null 2>&1 || [ -d "${pki_cert_dir}" ]; then
+    CERT_DIR="${pki_cert_dir}"
+    CA_BUNDLE="$(first_existing_bundle \
+      "${pki_default_bundle}" \
+      "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem" \
+      "/etc/ssl/certs/ca-bundle.crt" || printf '%s\n' "${pki_default_bundle}")"
+    return 0
+  fi
+
+  echo "Unsupported trust-store layout. OS: ${OS_SUMMARY}; expected either ${debian_cert_dir} with ${debian_bundle}, or ${pki_cert_dir} with ${pki_default_bundle}" >&2
+  return 1
+}
+
+OS_SUMMARY="$(os_summary)"
+detect_trust_store_layout
+
+check "Corporate cert is not present (OS: ${OS_SUMMARY}; cert dir: ${CERT_DIR})" \
+  bash -c "! test -f '${CERT_DIR}/corporate.crt'"
+
+check "System CA bundle still exists (OS: ${OS_SUMMARY}; expected bundle: ${CA_BUNDLE})" \
+  test -f "${CA_BUNDLE}"
+
+check "System CA bundle is readable (OS: ${OS_SUMMARY}; expected bundle: ${CA_BUNDLE})" \
+  test -r "${CA_BUNDLE}"
 
 reportResults

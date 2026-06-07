@@ -29,9 +29,16 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: "Install latest devcontainer CLI"
+      - name: "Setup Node.js"
         if: ${{ steps.release-please.outputs.releases_created == 'true' }}
-        run: npm install -g @devcontainers/cli
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+
+      - name: "Install Node.js dependencies"
+        if: ${{ steps.release-please.outputs.releases_created == 'true' }}
+        run: npm ci
 
       - name: "Verify feature versions"
         if: ${{ steps.release-please.outputs.releases_created == 'true' }}
@@ -62,8 +69,7 @@ jobs:
       - name: "Generate feature documentation"
         if: ${{ steps.release-please.outputs.releases_created == 'true' }}
         run: |
-          devcontainer features generate-docs \
-            --project-folder ./src \
+          npm run devcontainer:docs -- \
             --namespace "${{ github.repository }}" \
             --github-owner "${{ github.repository_owner }}" \
             --github-repo "${GITHUB_EVENT_REPOSITORY_NAME}"
