@@ -7,12 +7,12 @@
     "sourceCertificateDirectory": {
       "type": "string",
       "default": "",
-      "description": "Optional directory containing mounted custom CA certificates to copy into certDirectory before updating trust"
+      "description": "Optional directory containing mounted custom CA certificates to copy into the detected or explicit certDirectory before updating trust"
     },
     "certDirectory": {
       "type": "string",
-      "default": "/usr/local/share/ca-certificates",
-      "description": "Directory containing custom CA certificates"
+      "default": "",
+      "description": "Directory containing custom CA certificates. Defaults to the detected trust-store directory for the available CA update command."
     },
     "required": {
       "type": "boolean",
