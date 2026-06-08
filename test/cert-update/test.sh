@@ -2,7 +2,7 @@
 # Auto-generated default test
 set -e
 
-# shellcheck disable=SC1091
+# shellcheck source=/dev/null
 source dev-container-features-test-lib
 
 # Because "required" is now false by default, the feature should

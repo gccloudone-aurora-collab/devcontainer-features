@@ -25,6 +25,18 @@
         }
       ]
     },
+    "src/enhanced-custom-root-ca": {
+      "release-type": "simple",
+      "component": "enhanced-custom-root-ca",
+      "include-component-in-tag": true,
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "devcontainer-feature.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    },
     "src/enhanced-docker-in-docker": {
       "release-type": "simple",
       "component": "enhanced-docker-in-docker",

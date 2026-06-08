@@ -1,0 +1,40 @@
+{
+  "id": "enhanced-custom-root-ca",
+  "name": "Enhanced Custom Root CA",
+  "version": "2.0.0",
+  "description": "🔒 Add a custom Root CA to your development environment",
+  "documentationURL": "https://github.com/bdsoha/dev-containers/tree/main/src/custom-root-ca",
+  "licenseURL": "https://github.com/bdsoha/dev-containers/blob/main/LICENSE",
+  "options": {
+    "name": {
+      "type": "string",
+      "default": "custom-root-ca.crt",
+      "description": "Name of the custom root CA"
+    },
+    "source": {
+      "type": "string",
+      "default": "https://netfree.link/cacert/isp/018/ca.crt",
+      "proposals": [
+        "https://netfree.link/cacert/isp/018/ca.crt",
+        "https://netfree.link/cacert/isp/018/ca.crt,https://netfree.link/cacert/isp/019/ca.crt"
+      ],
+      "description": "Remote location *(or comma separated locations)* of the certificate in PEM format to be added"
+    },
+    "fingerprints": {
+      "type": "string",
+      "default": "",
+      "description": "Optional comma-separated list of SHA-256 fingerprints to verify the downloaded certificates against."
+    },
+    "bundle": {
+      "type": "boolean",
+      "default": true,
+      "description": "Create a certificate bundle of all applied CAs"
+    },
+    "verify": {
+      "type": "boolean",
+      "default": true,
+      "description": "Verify the downloaded SSL certificate"
+    }
+  },
+  "installsAfter": ["ghcr.io/devcontainers/features/common-utils"]
+}

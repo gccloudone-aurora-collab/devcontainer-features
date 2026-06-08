@@ -1,0 +1,36 @@
+{
+  "custom": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "enhanced-custom-root-ca": {
+        "name": "custom.crt",
+        "bundle": false,
+        "verify": false
+      }
+    }
+  },
+  "alpine": {
+    "image": "mcr.microsoft.com/devcontainers/base:alpine",
+    "features": {
+      "enhanced-custom-root-ca": {}
+    }
+  },
+  "multiple": {
+    "image": "mcr.microsoft.com/devcontainers/base:alpine",
+    "features": {
+      "enhanced-custom-root-ca": {
+        "name": "custom.sub.crt",
+        "source": "https://netfree.link/cacert/isp/018/ca.crt,https://netfree.link/cacert/isp/019/ca.crt"
+      }
+    }
+  },
+  "fingerprint-success": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+      "enhanced-custom-root-ca": {
+        "source": "http://pki-icp.canada.ca/aia/GoC-GdC-Root-A.crt",
+        "fingerprints": "FE:E0:9E:77:43:BF:D4:3E:D7:D4:D3:ED:50:6C:C7:9D:2D:90:70:FF:A9:29:91:16:87:D4:27:33:70:BE:A3:06"
+      }
+    }
+  }
+}

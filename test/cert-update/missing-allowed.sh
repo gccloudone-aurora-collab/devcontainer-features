@@ -2,7 +2,7 @@
 
 set -e
 
-# shellcheck disable=SC1091
+# shellcheck source=/dev/null
 source dev-container-features-test-lib
 
 os_release_value() {

@@ -1,5 +1,6 @@
 # Ignore auto-generated feature documentation
 src/*/README.md
+src/*/CHANGELOG.md
 
 # Ignore the root README (which is modified by update-root-readme.sh)
 README.md
