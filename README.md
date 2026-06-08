@@ -13,6 +13,7 @@ You can learn more about Features at [https://containers.dev/implementors/featur
 | ------- | ----------- |
 | [cert-update](./src/cert-update) | Applies mounted corporate CA certificates to the container trust store |
 | [databricks-cli](./src/databricks-cli) | Installs the Databricks CLI using the official Databricks setup script. |
+| [enhanced-custom-root-ca](./src/enhanced-custom-root-ca) | 🔒 Add a custom Root CA to your development environment |
 | [enhanced-docker-in-docker](./src/enhanced-docker-in-docker) | Create child containers *inside* a container, independent from the host's docker instance. Installs Docker extension in the container along with needed CLIs. |
 <!-- FEATURES_TABLE_END -->
 
@@ -28,6 +29,7 @@ To reference one or more Features from this repository, add them to your `devcon
   "features": {
     "ghcr.io/KingBain/devcontainer-features/cert-update:1": {},
     "ghcr.io/KingBain/devcontainer-features/databricks-cli:1": {},
+    "ghcr.io/KingBain/devcontainer-features/enhanced-custom-root-ca:2": {},
     "ghcr.io/KingBain/devcontainer-features/enhanced-docker-in-docker:1": {}
   }
 }

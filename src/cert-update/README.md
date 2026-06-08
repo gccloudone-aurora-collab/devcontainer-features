@@ -20,7 +20,9 @@ Applies mounted corporate CA certificates to the container trust store
 | required | Fail if no custom CA certificates are found | boolean | false |
 | testCertificate | Generate a temporary test CA certificate for feature testing | boolean | false |
 
-# 💡 Usage Guide: Corporate Root Certificates
+<!-- markdownlint-disable-file MD041 -->
+
+## 💡 Usage Guide: Corporate Root Certificates
 
 This feature is designed for developers working on corporate desktops or virtual machines situated behind strict corporate proxies or firewalls. These environments often intercept SSL/TLS traffic, which will cause standard development tools (like `npm`, `pip`, `curl`, or `git`) inside your Dev Container to fail with "SSL Certificate Verification" errors.
 
