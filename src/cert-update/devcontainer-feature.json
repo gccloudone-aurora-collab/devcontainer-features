@@ -1,7 +1,7 @@
 {
   "id": "cert-update",
   "name": "Certificate Updater",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Applies mounted corporate CA certificates to the container trust store",
   "options": {
     "sourceCertificateDirectory": {
