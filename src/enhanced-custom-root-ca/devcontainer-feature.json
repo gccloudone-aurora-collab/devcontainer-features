@@ -1,7 +1,7 @@
 {
   "id": "enhanced-custom-root-ca",
   "name": "Enhanced Custom Root CA",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "🔒 Add a custom Root CA to your development environment",
   "documentationURL": "https://github.com/bdsoha/dev-containers/tree/main/src/custom-root-ca",
   "licenseURL": "https://github.com/bdsoha/dev-containers/blob/main/LICENSE",
@@ -36,5 +36,7 @@
       "description": "Verify the downloaded SSL certificate"
     }
   },
-  "installsAfter": ["ghcr.io/devcontainers/features/common-utils"]
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils"
+  ]
 }
