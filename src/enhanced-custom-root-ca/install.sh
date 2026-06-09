@@ -2,21 +2,27 @@
 
 set -e
 
-# Satisfy ShellCheck by providing defaults for variables injected by the DevContainer
-NAME="${NAME:-custom-root-ca.crt}"
-SOURCE="${SOURCE:-}"
-FINGERPRINTS="${FINGERPRINTS:-}"
-BUNDLE="${BUNDLE:-true}"
-VERIFY="${VERIFY:-true}"
-
 fatal() {
   echo "⛔ " "$@" >&2
   exit 1
 }
 
+# Satisfy ShellCheck by providing defaults for variables injected by the DevContainer
+NAME="${NAME:-custom-root-ca.crt}"
+SOURCES="${SOURCES:-}"
+FINGERPRINTS="${FINGERPRINTS:-}"
+BUNDLE="${BUNDLE:-true}"
+ALLOWINSECUREDOWNLOAD="${ALLOWINSECUREDOWNLOAD:-false}"
+
+if [ -z "${SOURCES}" ]; then
+  echo "ℹ️ No certificate sources were provided. Skipping custom root CA installation."
+  exit 0
+fi
+
 check_packages() {
   if ! command -v curl > /dev/null 2>&1 && ! command -v wget > /dev/null 2>&1; then
     echo "pkg: Downloader not found. Attempting to install 'curl'..."
+
     if [ -x "$(command -v apt-get)" ]; then
       export DEBIAN_FRONTEND=noninteractive
       apt-get update -y
@@ -24,28 +30,45 @@ check_packages() {
     elif [ -x "$(command -v apk)" ]; then
       apk add --no-cache curl ca-certificates
     else
-      fatal "Neither curl nor wget found, and could not install curl automatically (unsupported package manager)."
+      fatal "Neither curl nor wget found, and could not install curl automatically."
     fi
   fi
 
   if ! command -v update-ca-certificates > /dev/null 2>&1; then
     echo "pkg: 'update-ca-certificates' not found. Installing 'ca-certificates'..."
+
     if [ -x "$(command -v apt-get)" ]; then
       export DEBIAN_FRONTEND=noninteractive
       apt-get update -y
       apt-get install -y --no-install-recommends ca-certificates
     elif [ -x "$(command -v apk)" ]; then
       apk add --no-cache ca-certificates
+    else
+      fatal "update-ca-certificates is required but could not be installed automatically."
+    fi
+  fi
+
+  if [ -n "${FINGERPRINTS}" ] && ! command -v openssl > /dev/null 2>&1; then
+    echo "pkg: 'openssl' not found. Installing 'openssl' because certificate fingerprints were provided..."
+
+    if [ -x "$(command -v apt-get)" ]; then
+      export DEBIAN_FRONTEND=noninteractive
+      apt-get update -y
+      apt-get install -y --no-install-recommends openssl
+    elif [ -x "$(command -v apk)" ]; then
+      apk add --no-cache openssl
+    else
+      fatal "openssl is required to verify certificate fingerprints but could not be installed automatically."
     fi
   fi
 }
 
-set_insecure_flag() {
+set_insecure_download_flag() {
   downloader="$1"
   flag=""
 
-  if [ "${VERIFY}" = "false" ]; then
-    echo "🙈 Ignoring security verification"
+  if [ "${ALLOWINSECUREDOWNLOAD}" = "true" ]; then
+    echo "🙈 Allowing insecure download without TLS certificate validation"
 
     case "$downloader" in
       curl)
@@ -64,18 +87,37 @@ set_insecure_flag() {
 download() {
   url_source="$1"
   cert_name="$2"
+  user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
   echo "⏬ Downloading certificate from ${url_source}"
   echo "📁 Save certificate to ${cert_name}"
 
-  if [ -x "$(command -v wget)" ]; then
-    set_insecure_flag wget
-    # shellcheck disable=SC2086
-    wget -q $flag "$url_source" -O "$cert_name"
-  elif [ -x "$(command -v curl)" ]; then
-    set_insecure_flag curl
-    # shellcheck disable=SC2086
-    curl -sfL $flag "$url_source" -o "$cert_name"
+  if [ -x "$(command -v curl)" ]; then
+    set_insecure_download_flag curl
+    curl \
+      -4 \
+      -vfL \
+      --user-agent "$user_agent" \
+      --connect-timeout 15 \
+      --max-time 60 \
+      --retry 3 \
+      --retry-delay 3 \
+      --retry-all-errors \
+      $flag \
+      "$url_source" \
+      -o "$cert_name"
+
+  elif [ -x "$(command -v wget)" ]; then
+    set_insecure_download_flag wget
+    wget \
+      -4 \
+      --user-agent="$user_agent" \
+      -T 60 \
+      -t 3 \
+      $flag \
+      "$url_source" \
+      -O "$cert_name"
+
   else
     fatal "Could not find curl or wget, please install one."
   fi
@@ -134,7 +176,7 @@ check_packages
 counter=0
 filename=$(echo "$NAME" | cut -d . -f 1)
 extension=$(echo "$NAME" | cut -d . -f 2-)
-certs=$(echo "$SOURCE" | tr ',' '\n')
+certs=$(echo "$SOURCES" | tr ',' '\n')
 dest_dir=/usr/local/share/ca-certificates
 
 mkdir -p "$dest_dir"

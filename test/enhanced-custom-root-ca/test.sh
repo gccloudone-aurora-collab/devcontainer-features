@@ -5,10 +5,10 @@ set -e
 # shellcheck source=/dev/null
 source dev-container-features-test-lib
 
-check "Cert installed" test -f /usr/local/share/ca-certificates/custom-root-ca.crt
-check "Cert linked" [ -L /etc/ssl/certs/custom-root-ca.pem ]
+check "Default install does not install custom cert" \
+  test ! -f /usr/local/share/ca-certificates/custom-root-ca.crt
 
-check "Cert bundle installed" test -f /usr/local/share/ca-certificates/custom-root-ca.bundle.crt
-check "Cert bundle linked" [ -L /etc/ssl/certs/custom-root-ca.bundle.pem ]
+check "Default install does not install custom cert bundle" \
+  test ! -f /usr/local/share/ca-certificates/custom-root-ca.bundle.crt
 
 reportResults

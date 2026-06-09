@@ -29,7 +29,7 @@
     "allowInsecureDownload": {
       "type": "boolean",
       "default": false,
-      "description": "Allow downloading certificates without validating the HTTPS server TLS certificate. This is insecure and should only be used when required by a trusted proxy or interception environment."
+      "description": "Allow downloading certificates without validating the HTTPS server TLS certificate."
     }
   },
   "installsAfter": ["ghcr.io/devcontainers/features/common-utils"]
