@@ -29,7 +29,7 @@ To reference one or more Features from this repository, add them to your `devcon
   "features": {
     "ghcr.io/KingBain/devcontainer-features/cert-update:1": {},
     "ghcr.io/KingBain/devcontainer-features/databricks-cli:1": {},
-    "ghcr.io/KingBain/devcontainer-features/enhanced-custom-root-ca:2": {},
+    "ghcr.io/KingBain/devcontainer-features/enhanced-custom-root-ca:3": {},
     "ghcr.io/KingBain/devcontainer-features/enhanced-docker-in-docker:1": {}
   }
 }
