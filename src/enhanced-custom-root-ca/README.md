@@ -7,7 +7,7 @@
 
 ```json
 "features": {
-    "ghcr.io/KingBain/devcontainer-features/enhanced-custom-root-ca:3": {}
+    "ghcr.io/gccloudone-aurora-collab/devcontainer-features/enhanced-custom-root-ca:4": {}
 }
 ```
 
@@ -118,4 +118,4 @@ This feature was tested with the following base images _(and should work with al
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/KingBain/devcontainer-features/blob/main/src/enhanced-custom-root-ca/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/gccloudone-aurora-collab/devcontainer-features/blob/main/src/enhanced-custom-root-ca/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
