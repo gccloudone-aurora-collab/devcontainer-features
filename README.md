@@ -25,8 +25,8 @@ To reference one or more Features from this repository, add them to your `devcon
   "name": "my-project-devcontainer",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/KingBain/devcontainer-features/enhanced-custom-root-ca:4": {},
-    "ghcr.io/KingBain/devcontainer-features/enhanced-docker-in-docker:1": {}
+    "ghcr.io/gccloudone-aurora-collab/devcontainer-features/enhanced-custom-root-ca:4": {},
+    "ghcr.io/gccloudone-aurora-collab/devcontainer-features/enhanced-docker-in-docker:1": {}
   }
 }
 ```
