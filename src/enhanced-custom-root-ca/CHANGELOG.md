@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/gccloudone-aurora-collab/devcontainer-features/compare/enhanced-custom-root-ca-v4.0.0...enhanced-custom-root-ca-v4.0.1) (2026-07-21)
+
+
+### Bug Fixes
+
+* documentation cleanup ([0b0a665](https://github.com/gccloudone-aurora-collab/devcontainer-features/commit/0b0a66571bfce787513dee40fe329a54b8342784))
+
 ## [4.0.0](https://github.com/gccloudone-aurora-collab/devcontainer-features/compare/enhanced-custom-root-ca-v3.0.0...enhanced-custom-root-ca-v4.0.0) (2026-07-21)
 
 
