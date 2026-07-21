@@ -21,7 +21,7 @@ usage_features="$(
     feature_id="$(jq -r '.id' "${metadata}")"
     version="$(jq -r '.version' "${metadata}")"
     major_version="${version%%.*}"
-    printf '    "ghcr.io/KingBain/devcontainer-features/%s:%s": {}' "${feature_id}" "${major_version}"
+    printf '    "ghcr.io/gccloudone-aurora-collab/devcontainer-features/%s:%s": {}' "${feature_id}" "${major_version}"
     if [ "${index}" -lt "$((${#feature_metadata_files[@]} - 1))" ]; then
       printf ','
     fi
