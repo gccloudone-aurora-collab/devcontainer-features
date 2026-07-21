@@ -41,7 +41,7 @@ To override the order of installation, add the following to your `devcontainer.j
 ```jsonc
 // ...
 "overrideFeatureInstallOrder": [
-    "ghcr.io/kingbain/devcontainers/enhanced-custom-root-ca"
+    "ghcr.io/gccloudone-aurora-collab/devcontainers/enhanced-custom-root-ca"
 ],
 // ...
 ```
@@ -58,7 +58,7 @@ When downloading one certificate, provide one SHA-256 fingerprint:
 
 ```jsonc
 "features": {
-    "ghcr.io/kingbain/devcontainer-features/enhanced-custom-root-ca:2": {
+    "ghcr.io/gccloudone-aurora-collab/devcontainer-features/enhanced-custom-root-ca:4": {
         "source": "https://example.com/root-ca.crt",
         "fingerprints": "AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99"
     }
@@ -73,7 +73,7 @@ If you want to verify each certificate, provide a comma-separated list of SHA-25
 
 ```jsonc
 "features": {
-    "ghcr.io/kingbain/devcontainer-features/enhanced-custom-root-ca:2": {
+    "ghcr.io/gccloudone-aurora-collab/devcontainer-features/enhanced-custom-root-ca:4": {
         "name": "custom.sub.crt",
         "source": "https://example.com/root-ca-1.crt,https://example.com/root-ca-2.crt",
         "fingerprints": "AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99,11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00"

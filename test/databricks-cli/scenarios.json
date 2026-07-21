@@ -1,9 +1,0 @@
-{
-  "ubuntu_base": {
-    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-    "features": {
-      "databricks-cli": {}
-    },
-    "remoteUser": "root"
-  }
-}
