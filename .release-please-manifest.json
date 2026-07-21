@@ -1,4 +1,4 @@
 {
-  "src/enhanced-docker-in-docker": "1.1.1",
+  "src/enhanced-docker-in-docker": "1.2.0",
   "src/enhanced-custom-root-ca": "4.0.1"
 }
