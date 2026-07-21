@@ -32,7 +32,5 @@
       "description": "Allow downloading certificates without validating the HTTPS server TLS certificate."
     }
   },
-  "installsAfter": [
-    "ghcr.io/devcontainers/features/common-utils"
-  ]
+  "installsAfter": ["ghcr.io/devcontainers/features/common-utils"]
 }
