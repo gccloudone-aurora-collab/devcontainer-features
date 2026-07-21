@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.2](https://github.com/gccloudone-aurora-collab/devcontainer-features/compare/enhanced-custom-root-ca-v4.0.1...enhanced-custom-root-ca-v4.0.2) (2026-07-21)
+
+
+### Bug Fixes
+
+* remove old kingbain reference ([aee203c](https://github.com/gccloudone-aurora-collab/devcontainer-features/commit/aee203c831aca352e7f639d03743f1d9a4f9668a))
+
 ## [4.0.1](https://github.com/gccloudone-aurora-collab/devcontainer-features/compare/enhanced-custom-root-ca-v4.0.0...enhanced-custom-root-ca-v4.0.1) (2026-07-21)
 
 
