@@ -1,5 +1,5 @@
 {
-  "src/cert-update": "1.2.0",
+  "src/cert-update": "1.3.0",
   "src/databricks-cli": "1.0.4",
   "src/enhanced-docker-in-docker": "1.1.1",
   "src/enhanced-custom-root-ca": "3.0.0"
