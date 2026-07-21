@@ -7,7 +7,7 @@ Create child containers *inside* a container, independent from the host's docker
 
 ```json
 "features": {
-    "ghcr.io/KingBain/devcontainer-features/enhanced-docker-in-docker:1": {}
+    "ghcr.io/gccloudone-aurora-collab/devcontainer-features/enhanced-docker-in-docker:1": {}
 }
 ```
 
@@ -36,4 +36,4 @@ Create child containers *inside* a container, independent from the host's docker
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/KingBain/devcontainer-features/blob/main/src/enhanced-docker-in-docker/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/gccloudone-aurora-collab/devcontainer-features/blob/main/src/enhanced-docker-in-docker/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
