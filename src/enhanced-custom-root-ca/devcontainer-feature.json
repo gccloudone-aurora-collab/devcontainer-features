@@ -1,7 +1,7 @@
 {
   "id": "enhanced-custom-root-ca",
   "name": "Enhanced Custom Root CA",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "🔒 Add a custom Root CA to your development environment",
   "documentationURL": "https://github.com/KingBain/devcontainer-features/tree/main/src/enhanced-custom-root-ca",
   "licenseURL": "https://github.com/bdsoha/dev-containers/blob/main/LICENSE",
